@@ -1,0 +1,30 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: db-field-syncer
+rocketmq:
+  name-server: 172.16.200.35:9876
+
+
+sync.config:
+  syncDbConfigs:
+    - mqTopic: "example"
+      syncId: "example_sync"
+      srcDbName: "user_center"
+      targetDbJdbcUrl: "jdbc:mysql://127.0.0.1:3306/order_center?useUnicode=true&characterEncoding=UTF-8&useSSL=false"
+      targetDbUsername: "root"
+      targetDbPassword: "12345687"
+      tableConfigs:
+        - srcTableName: "user_info"
+          targetTableName: "zz_user_info"
+          srcTableKey: "id"
+          targetTableMappingKey: "user_id"
+          columnMapping:
+            username: username
+            nickname: nickname
+            age: user_age
+
+
+
